@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-震网" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/24/%E9%9C%87%E7%BD%91/" class="article-date">
+  <time class="dt-published" datetime="2022-09-24T04:02:45.000Z" itemprop="datePublished">2022-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/24/%E9%9C%87%E7%BD%91/">震网</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1 基本<br>震网（Stuxnet），指一种蠕虫病毒。它的复杂程度远超一般电脑黑客的能力。这种震网（Stuxnet）病毒于2010年6月首次被检测出来，是第一个专门定向攻击真实世界中基础（能源）设施的“蠕虫”病毒，比如核电站，水坝，国家电网。</p>
+<p>作为世界上首个网络“超级破坏性武器”，Stuxnet的计算机病毒已经感染了全球超过 45000个网络，伊朗遭到的攻击最为严重，60%的个人电脑感染了这种病毒。计算机安防专家认为，该病毒是有史以来最高端的“蠕虫”病毒。蠕虫是一种典型的计算机病毒，它能自我复制，并将副本通过网络传输，任何一台个人电脑只要和染毒电脑相连，就会被感染。</p>
+<p>“震网”病毒利用了微软视窗操作系统之前未被发现的4个漏洞。这种新病毒采取了多种先进技术，因此具有极强的隐身和破坏力。只要电脑操作员将被病毒感染的U盘插入USB接口，这种病毒就会在神不知鬼不觉的情况下(不会有任何其他操作要求或者提示出现)取得一些工业用电脑系统的控制权。</p>
+<p>2 运行环境<br>Stuxnet蠕虫在以下操作系统中可以激活运行：<br>Windows 2000、Windows Server 2000<br>Windows XP、Windows Server 2003<br>Windows Vista<br>Windows 7、Windows Server 2008<br>当它发现自己运行在非Windows NT系列操作系统中，即刻退出。<br>被攻击的软件系统包括：<br>SIMATIC WinCC 7.0<br>SIMATIC WinCC 6.2</p>
+<p>3 本地行为<br><img src="/images/1.png"><br>样本被激活后<br>首先判断当前操作系统类型，如果是Windows 9X&#x2F;ME，就直接退出。<br>接下来加载一个主要的DLL模块，后续的行为都将在这个DLL中进行。为了躲避查杀，样本并不将DLL模块释放为磁盘文件然后加载，而是直接拷贝到内存中，然后模拟DLL的加载过程。<br>具体而言，样本先申请足够的内存空间，然后hookntdll.dll导出的6个系统函数：<br>ZwMapViewOfSection<br>ZwCreateSection<br>ZwOpenFile<br>ZwClose<br>ZwQueryAttributesFile<br>ZwQuerySection<br>为此，样本先修改ntdll.dll文件内存映像中PE头的保护属性，然后将偏移0x40处的无用数据改写为跳转代码，用以实现hook。<br>进而，样本就可以使用ZwCreateSection在内存空间中创建一个新的PE节，并将要加载的DLL模块拷贝到其中，最后使用LoadLibraryW来获取模块句柄。<br>此后，样本跳转到被加载的DLL中执行，衍生下列文件：<br>%System32%\drivers\mrxcls.sys %System32%\drivers\mrxnet.sys%Windir%\inf\oem7A.PNF%Windir%\inf\mdmeric3.PNF %Windir%\inf\mdmcpq3.PNF%Windir%\inf\oem6C.PNF 　其中有两个驱动程序mrxcls.sys和mrxnet.sys，分别被注册成名为MRXCLS和MRXNET的系统服务，实现开机自启动。这两个驱动程序都使用了Rootkit技术，并有数字签名。<br>mrxcls.sys负责查找主机中安装的WinCC系统，并进行攻击。具体地说，它监控系统进程的镜像加载操作，将存储在%Windir%\inf\oem7A.PNF中的一个模块注入到services.exe、S7tgtopx.exe、CCProjectMgr.exe三个进程中，后两者是WinCC系统运行时的进程。<br>mrxnet.sys通过修改一些内核调用来隐藏被拷贝到U盘的lnk文件和DLL文件<br><img src="/images/2.png"></p>
+<p>3 传播<br>Stuxnet蠕虫的攻击目标是SIMATIC WinCC软件。后者主要用于工业控制系统的数据采集与监控，一般部署在专用的内部局域网中，并与外部互联网实行物理上的隔离。为了实现攻击，Stuxnet蠕虫采取多种手段进行渗透和传播，如图3所示。<br>整体的传播思路是：首先感染外部主机；然后感染U盘，利用快捷方式文件解析漏洞，传播到内部网络；在内网中，通过快捷方式解析漏洞、RPC远程执行漏洞、打印机后台程序服务漏洞，实现联网主机之间的传播；最后抵达安装了WinCC软件的主机，展开攻击。</p>
+<p>4 攻击行为<br><img src="/images/3.png"><br>Stuxnet蠕虫查询两个注册表键来判断主机中是否安装WinCC系统<br>HKLM\SOFTWARE\SIEMENS\WinCC\Setup<br>HKLM\SOFTWARE\SIEMENS\STEP7<br>查询注册表，判断是否安装WinCC<br>一旦发现WinCC系统，就利用其中的两个漏洞展开攻击：<br>一是WinCC系统中存在一个硬编码漏洞，保存了访问数据库的默认账户名和密码，Stuxnet利用这一漏洞尝试访问该系统的SQL数据库<br><img src="/images/4.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/24/%E9%9C%87%E7%BD%91/" data-id="cl8fftn5z00020svm3jw13x20" data-title="震网" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-安全编程基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2022-09-24T04:01:40.000Z" itemprop="datePublished">2022-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">安全编程基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#include&lt;stdio.h&gt;<br>#include&lt;stdlib.h&gt;<br>int main()<br>{<br>    int a,b,c,sum;<br>    a&#x3D;666;b&#x3D;777;c&#x3D;888;<br>    sum&#x3D;a+b+c;<br>    printf(“the sum is %d\n”,sum);<br>    system(“pause”);<br>}</p>
+<p>#include&lt;stdio.h&gt;<br>#include&lt;stdlib.h&gt;<br>int main()<br>{<br>    int a,b,c,sum;<br>    printf(“please enter x,y,z”);<br>    scanf(“%d,%d,%d”,&amp;a,&amp;b,&amp;c);<br>    sum&#x3D;a+b+c;<br>    printf(“the sum is %d.\n”,sum);<br>    system(“pause”);<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" data-id="cl8fftn5y00010svm31w35iet" data-title="安全编程基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-我的第一篇文章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-19T13:36:20.000Z" itemprop="datePublished">2022-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">我的第一篇文章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>简介<br>我的第一篇文章</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="cl8fftn6000030svm6ef308tp" data-title="我的第一篇文章" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/19/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2022-09-19T11:50:43.492Z" itemprop="datePublished">2022-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/19/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/19/hello-world/" data-id="cl8fftn5v00000svm6y0b4yyl" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/24/%E9%9C%87%E7%BD%91/">震网</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">安全编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">我的第一篇文章</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/19/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
