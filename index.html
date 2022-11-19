@@ -71,6 +71,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-缓冲区溢出" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/19/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA/" class="article-date">
+  <time class="dt-published" datetime="2022-11-19T12:45:24.000Z" itemprop="datePublished">2022-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/19/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA/">缓冲区溢出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>缓冲区是指用于存储临时数据的区域，一般是一块连续的内存区域，如char Buffer[256]定义了一个256字节的缓冲区。<br>缓冲区的容量是预先设定的，如果存的数据大小超过了预设的区域，就会造成所谓的缓冲区溢出。<br>缓冲区溢出可能导致<br>1、系统服务频繁出错<br>2、系统不稳定甚至崩溃<br>3、应用程序异常，可能被攻击者利用跳转到部分代码，从而完成指定功能</p>
+<p>在程序的地址空间里安排适当的代码的方法<br>1、植入法：一般是向被攻击程序输入一个过长的字符串作为参数，而程序将该字符串不加检查地放入缓冲区。这个字符串里包含了由攻击者精心构造的一段Shellcode。Shellcode 实质上就是机器指令序列，可以完成攻击者所需的功能。<br>2、利用已存在的代码：一般是向被攻击程序输入一个过长的字符串作为参数，而程序将该字符串不加检查地放入缓冲区。这个字符串里包含了由攻击者精心构造的一段Shellcode。Shellcode 实质上就是机器指令序列，可以完成攻击者所需的功能。<br>3、覆盖返回地址：由于该地址来自局部变量，而局部变量又来自用户输入即程序参数，因此只需要修改程序参数就可以控制程序的流程。</p>
+<p>栈<br>“栈”是一块连续的内存空间，用来保存程序和函数执行过程中的临时数据，这些数据包括局部变量、类、传入&#x2F;传出参数、返回地址等。<br>栈的增长方向从高地址向低地址增长。即新入栈数据存放在比栈内原有数据更低的内存地址。<br>与栈有关的CPU寄存器<br>SP(Stack Pointer,x86:ESP,x64:RSP)，即栈顶指针。<br>BP(Base Pointer,x86:EBP,x64:RBP)，即基地址指针<br>IP(Instruction Pointer,x86:EIP,x64:RIP)，即指令寄存器，在调用某个子函数（Call指令）时，隐含的操作是将当前的IP值（子函数调用返回后下一条语句的地址）压入栈中。</p>
+<p>栈溢出<br>栈溢出指的是向栈中的某个局部变量存放数据时，数据的大小超出了该变量预设的空间大大小，导致该变量之后的数据被覆盖破坏。由于溢出发生在栈中，所以被 称为栈溢出。</p>
+<p>栈溢出防范<br>编程时注意缓冲区的边界；<br>不使用strcpy、memcpy等危险函数，仅使用它们的替代函数；<br>在编译器中加入边界检查；<br>在使用栈中重要数据之前加入检查，如Security Cookie技术。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/19/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA/" data-id="clanxlzin000a58vmchg7bauw" data-title="缓冲区溢出" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-5" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/10/30/5/" class="article-date">
@@ -98,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/30/5/" data-id="cl9v1okol0008mcvmc2lm0rg0" data-title="5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/30/5/" data-id="clanxlzij000358vmeuecf8ch" data-title="5" class="article-share-link">Share</a>
       
       
       
@@ -139,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/23/%E6%88%90%E5%88%86%E5%A4%8D%E6%9D%82/" data-id="cl9v1okok0006mcvm2omfhmku" data-title="成分复杂" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/23/%E6%88%90%E5%88%86%E5%A4%8D%E6%9D%82/" data-id="clanxlzim000958vma43l45wm" data-title="成分复杂" class="article-share-link">Share</a>
       
       
       
@@ -178,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/16/4/" data-id="cl9v1okoh0002mcvm2l60g86p" data-title="4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/16/4/" data-id="clanxlzik000458vm88826jjq" data-title="4" class="article-share-link">Share</a>
       
       
       
@@ -217,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/10/2/" data-id="cl9v1okog0001mcvmah3r7rz0" data-title="2" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/10/2/" data-id="clanxlzih000158vme4m4ekjm" data-title="2" class="article-share-link">Share</a>
       
       
       
@@ -256,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/09/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B4/" data-id="cl9v1okom0009mcvm2krs7cc1" data-title="常见的文件头" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/09/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B4/" data-id="clanxlzim000858vm15ej22s1" data-title="常见的文件头" class="article-share-link">Share</a>
       
       
       
@@ -295,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/09/3/" data-id="cl9v1okoj0005mcvm03z3f4mt" data-title="3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/09/3/" data-id="clanxlzij000258vm6xfs5ije" data-title="3" class="article-share-link">Share</a>
       
       
       
@@ -334,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/01/1/" data-id="cl9v1okod0000mcvm4eaocgpc" data-title="1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/01/1/" data-id="clanxlzif000058vm2zle9pyz" data-title="1" class="article-share-link">Share</a>
       
       
       
@@ -378,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/01/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/" data-id="cl9v1okoi0003mcvm5u600cj7" data-title="哈希函数" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/01/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/" data-id="clanxlzik000558vm9xqbahyc" data-title="哈希函数" class="article-share-link">Share</a>
       
       
       
@@ -423,47 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/%E9%9C%87%E7%BD%91/" data-id="cl9v1okom000amcvm9p6654bo" data-title="震网" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-安全编程基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time class="dt-published" datetime="2022-09-24T04:01:40.000Z" itemprop="datePublished">2022-09-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">安全编程基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#include&lt;stdio.h&gt;<br>#include&lt;stdlib.h&gt;<br>int main()<br>{<br>    int a,b,c,sum;<br>    a&#x3D;666;b&#x3D;777;c&#x3D;888;<br>    sum&#x3D;a+b+c;<br>    printf(“the sum is %d\n”,sum);<br>    system(“pause”);<br>}</p>
-<p>#include&lt;stdio.h&gt;<br>#include&lt;stdlib.h&gt;<br>int main()<br>{<br>    int a,b,c,sum;<br>    printf(“please enter x,y,z”);<br>    scanf(“%d,%d,%d”,&amp;a,&amp;b,&amp;c);<br>    sum&#x3D;a+b+c;<br>    printf(“the sum is %d.\n”,sum);<br>    system(“pause”);<br>}</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" data-id="cl9v1okoj0004mcvmh93k5xba" data-title="安全编程基础" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/%E9%9C%87%E7%BD%91/" data-id="clanxlzio000b58vmf2tf8gdg" data-title="震网" class="article-share-link">Share</a>
       
       
       
@@ -498,7 +501,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
     </div>
   </div>
 
@@ -509,6 +512,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/11/19/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA/">缓冲区溢出</a>
+          </li>
         
           <li>
             <a href="/2022/10/30/5/">5</a>
@@ -524,10 +531,6 @@
         
           <li>
             <a href="/2022/10/10/2/">2</a>
-          </li>
-        
-          <li>
-            <a href="/2022/10/09/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B4/">常见的文件头</a>
           </li>
         
       </ul>
